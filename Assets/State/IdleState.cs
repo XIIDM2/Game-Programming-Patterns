@@ -1,19 +1,24 @@
 using UnityEngine;
 
-public class IdleState : IState
+public class IdleState : State
 {
-    public void Enter()
+    public override State HandleInput(PlayerController controller, InputData inputData)
     {
-        Debug.Log("Enter Idle state");
-    }
-    public void Update()
-    {
-        Debug.Log("In Idle state");
+        switch (inputData.action)
+        {
+            case PlayerAction.Move:
+                return new MoveState();
+            case PlayerAction.Jump:
+                if (controller.Movement.IsGrounded) return new JumpState();
+                return null;
+            default: 
+                return null;
+        }
+
     }
 
-    public void Exit()
+    public override void Enter(PlayerController controller)
     {
-        Debug.Log("Exit Idle state");
+        controller.Movement.Move(ZERO_MOVEMENT_SPEED);
     }
-
 }
