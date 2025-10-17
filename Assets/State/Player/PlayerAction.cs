@@ -1,6 +1,12 @@
-public enum PlayerAction
+namespace Patterns.FSM
 {
-    Move,
-    Jump,
-    Attack,
+    public enum PlayerAction
+    {
+        Move,
+        Jump,
+        Crouch,
+        StopCrouch,
+        Attack,
+        StopAttack,
+    }
 }

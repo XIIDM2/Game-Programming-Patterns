@@ -1,20 +1,24 @@
+using Patterns.GlobalEventSystem;
 using UnityEngine;
 
-public class Listener : MonoBehaviour
+namespace Patterns.Observer
 {
-    [SerializeField] private Subject _subject;
+    public class Listener : MonoBehaviour
+    {
+        [SerializeField] private Subject _subject;
 
-    private void OnEnable()
-    {
-        _subject.Event += OnEvent;
-    }
-    private void OnDisable()
-    {
-        _subject.Event -= OnEvent;
-    }
+        private void OnEnable()
+        {
+            _subject.Event += OnEvent;
+        }
+        private void OnDisable()
+        {
+            _subject.Event -= OnEvent;
+        }
 
-    private void OnEvent()
-    {
-        Debug.Log("Event Happened, do something");
+        private void OnEvent()
+        {
+            Debug.Log("Event Happened, do something");
+        }
     }
 }

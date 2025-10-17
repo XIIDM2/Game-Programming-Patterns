@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+namespace Patterns.Prototype
 {
-    [SerializeField] private GameObject _prototypePrefab;
-
-    private void Start()
+    public class Spawner : MonoBehaviour
     {
-        Instantiate(_prototypePrefab);
+        [SerializeField] private GameObject _prototypePrefab;
+
+        private void Start()
+        {
+            Instantiate(_prototypePrefab);
+        }
     }
 }

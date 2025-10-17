@@ -1,17 +1,18 @@
 using UnityEngine;
 
-public class Shape : MonoBehaviour
+namespace Patterns.Flyweight
 {
-    [SerializeField] private ShapesData _data;
-
-    [SerializeField] private int _health;
-    [SerializeField] private float _movementSpeed;
-
-    private void Start()
+    public class Shape : MonoBehaviour
     {
-        _health = _data.Health;
-        _movementSpeed = _data.MovementSpeed;
+        [SerializeField] private ShapesData _data;
+
+        [SerializeField] private int _health;
+        [SerializeField] private float _movementSpeed;
+
+        private void Start()
+        {
+            _health = _data.Health;
+            _movementSpeed = _data.MovementSpeed;
+        }
     }
 }
-
-

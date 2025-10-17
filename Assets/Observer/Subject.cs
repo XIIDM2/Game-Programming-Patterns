@@ -1,25 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Subject : MonoBehaviour
+namespace Patterns.GlobalEventSystem
 {
-    public event UnityAction Event;
-
-    private float _timer = 5;
-
-    private bool _happened = false;
-
-    private void Start()
+    public class Subject : MonoBehaviour
     {
-        Event?.Invoke();
-    }
+        public event UnityAction Event;
 
-    private void Update()
-    {
-        if (Time.time > _timer && !_happened)
+        private float _timer = 5;
+
+        private bool _happened = false;
+
+        private void Start()
         {
-            _happened = true;
-            Messenger.Broadcast(GameEvents.GlobalEvent);
+            Event?.Invoke();
+        }
+
+        private void Update()
+        {
+            if (Time.time > _timer && !_happened)
+            {
+                _happened = true;
+                Messenger.Broadcast(GameEvents.GlobalEvent);
+            }
         }
     }
 }

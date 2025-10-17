@@ -1,59 +1,81 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour
+namespace Patterns.FSM
 {
-    public PlayerMovement Movement { get; private set; }
-
-    private PlayerInputController _inputController;
-    private State _currentState;
-
-    private void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        Movement = GetComponent<PlayerMovement>();
-        _inputController = GetComponent<PlayerInputController>();
-    }
+        public PlayerMovement Movement { get; private set; }
+        public PlayerAttack Attack { get; private set; }
+        public PlayerAnimatiion Animation { get; private set; }
 
-    private void OnEnable()
-    {
-        _inputController.ActionTriggered += HandleInput;
-    }
+        private FiniteStateMachine _movementMachine;
+        private FiniteStateMachine _poseMachine;
+        private FiniteStateMachine _attackMachine;
 
-    private void OnDisable()
-    {
-        _inputController.ActionTriggered -= HandleInput;
-    }
+        private List<FiniteStateMachine> _stateMachines = new List<FiniteStateMachine>();
 
-    private void Start()
-    {
-        _currentState = new IdleState();
-        _currentState.Enter(this);
-    }
+        private PlayerInputController _inputController;
 
-    private void Update()
-    {
-        Debug.Log(_currentState);
-        _currentState.Update(this);
-    }
-
-    private void FixedUpdate()
-    {
-        _currentState.FixedUpdate(this);
-    }
-
-    public void HandleInput(InputData inputData)
-    {
-        State newState = _currentState.HandleInput(this, inputData);
-
-        ChangeState(newState);
-    }
-
-    public void ChangeState(State state)
-    {
-        if (state != null)
+        private void Awake()
         {
-            _currentState.Exit(this);
-            _currentState = state;
-            _currentState.Enter(this);
+            _inputController = GetComponent<PlayerInputController>();
+
+            Movement = GetComponent<PlayerMovement>();
+            Attack = GetComponent<PlayerAttack>();
+
+            Animation = GetComponentInChildren<PlayerAnimatiion>();
+        }
+
+        private void OnEnable()
+        {
+            _inputController.ActionTriggered += HandleInput;
+        }
+
+        private void OnDisable()
+        {
+            _inputController.ActionTriggered -= HandleInput;
+        }
+
+        private void Start()
+        {
+            _movementMachine = new FiniteStateMachine();
+            _movementMachine.FSMInitialize(this, new IdleState());
+
+            _poseMachine = new FiniteStateMachine();
+            _poseMachine.FSMInitialize(this, new StandingState());
+
+            _attackMachine = new FiniteStateMachine();
+            _attackMachine.FSMInitialize(this, new NonAttackState());
+
+            _stateMachines.Add(_movementMachine);
+            _stateMachines.Add(_poseMachine);
+            _stateMachines.Add(_attackMachine);
+        }
+
+        private void Update()
+        {
+            foreach (FiniteStateMachine stateMachine in _stateMachines)
+            {
+                stateMachine.FSMUpdate(this);
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (FiniteStateMachine stateMachine in _stateMachines)
+            {
+                stateMachine.FSMFixedUpdate(this);
+            }
+        }
+
+        public void HandleInput(InputData inputData)
+        {
+            foreach (FiniteStateMachine stateMachine in _stateMachines)
+            {
+                stateMachine.HandleInput(this, inputData);
+            }
         }
     }
 }

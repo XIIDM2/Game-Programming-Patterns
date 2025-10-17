@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Manager : Singleton<Manager>
+namespace Patterns.Singleton
 {
-    public void Method()
+    public class Manager : Singleton<Manager>
     {
-        Debug.Log("Manager singleton do something");
+        public void Method()
+        {
+            Debug.Log("Manager singleton do something");
+        }
     }
 }

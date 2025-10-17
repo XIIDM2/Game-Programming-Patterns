@@ -1,13 +1,16 @@
 using Unity.VisualScripting;
 
-public struct InputData
+namespace Patterns.FSM
 {
-    public PlayerAction action;
-    public float? value;
-
-    public InputData(PlayerAction action, float? value)
+    public struct InputData
     {
-        this.action = action;
-        this.value = value;
+        public PlayerAction action;
+        public float? value;
+
+        public InputData(PlayerAction action, float? value)
+        {
+            this.action = action;
+            this.value = value;
+        }
     }
 }

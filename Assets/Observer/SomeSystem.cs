@@ -1,19 +1,22 @@
 using UnityEngine;
 
-public class SomeSystem : MonoBehaviour
+namespace Patterns.GlobalEventSystem
 {
-    private void OnEnable()
+    public class SomeSystem : MonoBehaviour
     {
-        Messenger.AddListener(GameEvents.GlobalEvent, SomeMethod);
-    }
+        private void OnEnable()
+        {
+            Messenger.AddListener(GameEvents.GlobalEvent, SomeMethod);
+        }
 
-    private void OnDisable()
-    {
-        Messenger.RemoveListener(GameEvents.GlobalEvent, SomeMethod);
-    }
+        private void OnDisable()
+        {
+            Messenger.RemoveListener(GameEvents.GlobalEvent, SomeMethod);
+        }
 
-    private void SomeMethod()
-    {
-        Debug.Log("System do some logic");
+        private void SomeMethod()
+        {
+            Debug.Log("System do some logic");
+        }
     }
 }

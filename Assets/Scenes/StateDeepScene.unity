@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 303500859}
   - component: {fileID: 303500858}
   - component: {fileID: 303500857}
+  - component: {fileID: 303500861}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -204,7 +205,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2791bc9709a10e940b0142d739f00402, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -267,6 +268,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fa4d99136818a4eb5ac5f94ee38e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputController
+--- !u!114 &303500861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303500851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b790568056ccf264fadb1c715d4f3780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeObjectDirection
 --- !u!1 &311222767
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +323,9 @@ GameObject:
   m_Component:
   - component: {fileID: 320993492}
   - component: {fileID: 320993493}
+  - component: {fileID: 320993497}
   - component: {fileID: 320993495}
+  - component: {fileID: 320993498}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -380,12 +395,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1322540593, guid: af547c8fba3830e4cafee350386d35e1, type: 3}
+  m_Sprite: {fileID: -1094933186, guid: af547c8fba3830e4cafee350386d35e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.75, y: 2.5}
+  m_Size: {x: 0.65625, y: 1.1875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -425,18 +440,52 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.18133837, y: -0.6312414}
+  m_Offset: {x: 0.0019268095, y: 0.0034818053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.75, y: 2.5}
-    newSize: {x: 3.75, y: 2.5}
+    oldSize: {x: 0.65625, y: 1.1875}
+    newSize: {x: 0.65625, y: 1.1875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7521771, y: 1.2926072}
+  m_Size: {x: 0.8505146, y: 1.3820049}
   m_EdgeRadius: 0
+--- !u!95 &320993497
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320993491}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &320993498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320993491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84e213594f78fa4cb561c4b6e5a607f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatiion
 --- !u!1 &338722003
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public enum GameEvents
+namespace Patterns.GlobalEventSystem
 {
-    GlobalEvent,
+    public enum GameEvents
+    {
+        GlobalEvent,
+    }
 }

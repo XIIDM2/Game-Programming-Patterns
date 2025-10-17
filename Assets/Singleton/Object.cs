@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class Object : MonoBehaviour
+namespace Patterns.Singleton
 {
-    private void Start()
+    public class Object : MonoBehaviour
     {
-        Manager.Instance.Method();
+        private void Start()
+        {
+            Manager.Instance.Method();
+        }
     }
 }
